@@ -1,14 +1,16 @@
 <odoo>
-    <record id="view_label_template_tree" model="ir.ui.view">
-        <field name="name">label.template.tree</field>
+    <!-- Cambiado de view_label_template_tree a view_label_template_list -->
+    <record id="view_label_template_list" model="ir.ui.view">
+        <field name="name">label.template.list</field>
         <field name="model">label.template</field>
         <field name="arch" type="xml">
-            <tree>
+            <!-- CAMBIO CLAVE: tree por list -->
+            <list>
                 <field name="name"/>
                 <field name="dpi"/>
                 <field name="width_mm"/>
                 <field name="height_mm"/>
-            </tree>
+            </list>
         </field>
     </record>
 
