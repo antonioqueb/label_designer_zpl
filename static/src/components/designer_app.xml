@@ -1,0 +1,40 @@
+<templates>
+    <t t-name="label_designer_zpl.DesignerApp">
+        <div class="o_label_designer_container">
+            <div class="o_designer_sidebar p-3">
+                <h4 class="mb-4">Etiqueta: <t t-esc="state.templateData.name"/></h4>
+                
+                <div class="d-grid gap-2 mb-4">
+                    <button class="btn btn-outline-primary" t-on-click="() => this.addElement('text')"><i class="fa fa-font mr-2"/> Texto</button>
+                    <button class="btn btn-outline-primary" t-on-click="() => this.addElement('barcode')"><i class="fa fa-barcode mr-2"/> Code 128</button>
+                    <button class="btn btn-outline-primary" t-on-click="() => this.addElement('qrcode')"><i class="fa fa-qrcode mr-2"/> QR Code</button>
+                    <button class="btn btn-outline-primary" t-on-click="() => this.addElement('box')"><i class="fa fa-square-o mr-2"/> Recuadro</button>
+                </div>
+
+                <div t-if="state.selectedId" class="card shadow-sm border-primary">
+                    <div class="card-body">
+                        <h6>Propiedades</h6>
+                        <div class="mb-3" t-if="selectedEl.type !== 'box'">
+                            <label class="form-label">Contenido / Variable</label>
+                            <input type="text" class="form-control form-control-sm" t-model="selectedEl.props.text" t-on-input="renderCanvas"/>
+                        </div>
+                        <div class="mb-3" t-if="selectedEl.type === 'text'">
+                            <label class="form-label">Tamaño Fuente</label>
+                            <input type="number" class="form-control form-control-sm" t-model.number="selectedEl.props.fontSize" t-on-input="renderCanvas"/>
+                        </div>
+                        <button class="btn btn-danger btn-sm w-100" t-on-click="deleteSelected">Eliminar</button>
+                    </div>
+                </div>
+
+                <div class="mt-auto pt-4 border-top">
+                    <button class="btn btn-success w-100 mb-2" t-on-click="save">Guardar Cambios</button>
+                    <button class="btn btn-light w-100" t-on-click="() => window.history.back()">Cerrar</button>
+                </div>
+            </div>
+
+            <div class="o_canvas_wrapper">
+                <div id="konva-holder" style="background: white; border: 2px solid #333; box-shadow: 0 10px 30px rgba(0,0,0,0.3);"></div>
+            </div>
+        </div>
+    </t>
+</templates>

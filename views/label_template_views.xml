@@ -1,0 +1,43 @@
+<odoo>
+    <record id="view_label_template_tree" model="ir.ui.view">
+        <field name="name">label.template.tree</field>
+        <field name="model">label.template</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="dpi"/>
+                <field name="width_mm"/>
+                <field name="height_mm"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_label_template_form" model="ir.ui.view">
+        <field name="name">label.template.form</field>
+        <field name="model">label.template</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_open_designer" string="Diseñar Etiqueta" type="object" class="btn-primary"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="Ej: Etiqueta de Producto"/></h1>
+                    </div>
+                    <group>
+                        <group string="Dimensiones">
+                            <field name="width_mm"/>
+                            <field name="height_mm"/>
+                            <field name="dpi"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Código ZPL">
+                            <field name="zpl_code" widget="ace" options="{'mode': 'text'}"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
